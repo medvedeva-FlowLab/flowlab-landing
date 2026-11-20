@@ -2413,6 +2413,14 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 .program-toggle:hover, .program-item.is-open { background: #ffffff09; }
 .footer { background: linear-gradient(110deg, #17254f, #111524); }
 ::selection { background: var(--lab-cobalt); color: white; }
+.editorial-instructor { overflow: hidden; }
+@media (prefers-reduced-motion: no-preference) {
+  .parallax-photo {
+    translate: 0 var(--parallax-y, 0px);
+    scale: 1.16;
+  }
+  .parallax-heading { translate: 0 var(--parallax-y, 0px); }
+}
 </style>
 </head>
 <body>
@@ -3185,6 +3193,41 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
       }, { rootMargin: "0px 0px -8% 0px" });
       document.querySelectorAll("[data-reveal], .minimal-details, .program-list, .price-card, .student-case").forEach((zone) => zones.observe(zone));
     }
+
+    const motionPreference = matchMedia("(prefers-reduced-motion: reduce)");
+    const parallaxLayers = [
+      ...document.querySelectorAll(".minimal-frame--photo img, .editorial-dance img, .editorial-instructor img"),
+      ...document.querySelectorAll(".minimal-intro h1, .editorial-audience h2, .editorial-kit h2")
+    ].map((element) => {
+      const isImage = element.tagName === "IMG";
+      element.classList.add(isImage ? "parallax-photo" : "parallax-heading");
+      return { element, anchor: element.parentElement, range: isImage ? 30 : 12 };
+    });
+    let parallaxFrame = 0;
+    function updateParallax() {
+      parallaxFrame = 0;
+      if (motionPreference.matches) {
+        parallaxLayers.forEach(({ element }) => element.style.removeProperty("--parallax-y"));
+        return;
+      }
+      const height = innerHeight;
+      const mobileFactor = innerWidth < 761 ? 0.5 : 1;
+      parallaxLayers.forEach(({ element, anchor, range }) => {
+        const rect = anchor.getBoundingClientRect();
+        if (rect.bottom < -100 || rect.top > height + 100) return;
+        const progress = Math.max(-1, Math.min(1, (height / 2 - rect.top - rect.height / 2) / ((height + rect.height) / 2)));
+        element.style.setProperty("--parallax-y", (progress * range * mobileFactor).toFixed(2) + "px");
+      });
+    }
+    function queueParallax() {
+      if (!parallaxFrame) parallaxFrame = requestAnimationFrame(updateParallax);
+    }
+    addEventListener("scroll", queueParallax, { passive: true });
+    addEventListener("resize", queueParallax);
+    addEventListener("load", queueParallax);
+    document.addEventListener("toggle", queueParallax, true);
+    motionPreference.addEventListener("change", queueParallax);
+    queueParallax();
 
     const programItems = document.querySelectorAll(".program-item");
     programItems.forEach((item) => {
