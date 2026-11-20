@@ -2311,6 +2311,108 @@ body { background: var(--sand); }
 }
 
   </style>
+  <style>
+/* Laboratory brandbook: monochrome surfaces and one cobalt accent. */
+:root {
+  --lab-black: #111111;
+  --lab-concrete: #8b8b86;
+  --lab-light: #d9d9d4;
+  --lab-white: #f4f4f1;
+  --lab-cobalt: #2e4bff;
+  --jungle: var(--lab-black);
+  --palm: #222222;
+  --sage: var(--lab-light);
+  --mango: var(--lab-cobalt);
+  --sand: #eaeae6;
+  --paper: var(--lab-white);
+  --text: var(--lab-black);
+  --muted: #51514e;
+  --muted-soft: #5c5c58;
+  --line: #11111130;
+  --line-strong: #11111150;
+  --success: #333333;
+  --danger: #61615e;
+}
+
+body { font-family: "Suisse Intl", "Manrope", sans-serif; }
+.topbar { color: var(--lab-black); border-color: var(--line); }
+.topbar .wordmark i, .topbar .wordmark sup { color: var(--lab-cobalt); }
+.site-nav { font-family: "Manrope", sans-serif; font-weight: 700; }
+.site-nav a:hover { color: var(--lab-cobalt); }
+.minimal-intro h1 {
+  font-family: "Suisse Intl", "Manrope", sans-serif;
+  font-weight: 400;
+  letter-spacing: -.065em;
+}
+.minimal-intro h1 em {
+  color: white;
+  background: var(--lab-cobalt);
+  font: inherit;
+  letter-spacing: inherit;
+  padding: 0 .08em .05em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+.minimal-intro h1 > span { padding-bottom: .1em; }
+.minimal-actions .btn-primary, .btn-primary {
+  color: white;
+  background: var(--lab-cobalt);
+  box-shadow: none;
+}
+.minimal-actions .btn-primary:hover, .btn-primary:hover { background: #2038d5; }
+.minimal-actions .btn-secondary:hover { background: var(--lab-light); }
+a:focus-visible, button:focus-visible, summary:focus-visible {
+  outline: 2px solid var(--lab-cobalt);
+  outline-offset: 4px;
+}
+.minimal-frame--photo img, .editorial-dance img,
+.editorial-headphones { filter: grayscale(1); }
+.editorial-audience, #program, .footer {
+  --text: var(--lab-white);
+  --muted: #c4c4be;
+  --muted-soft: #b3b3ad;
+  --line: #f4f4f138;
+  --line-strong: #f4f4f158;
+  color: var(--text);
+  background: var(--lab-black);
+}
+.editorial-audience {
+  background:
+    radial-gradient(ellipse at 6% 20%, #2e4bff80, transparent 64%),
+    linear-gradient(125deg, #121a3a, var(--lab-black) 85%);
+}
+#program {
+  background:
+    radial-gradient(ellipse at 100% 8%, #2e4bff70, transparent 57%),
+    linear-gradient(165deg, #151d40, var(--lab-black) 80%);
+}
+.editorial-zone h2 em { font-family: inherit; font-style: normal; }
+.editorial-dance { background: var(--lab-black); }
+.editorial-kit-card { background: var(--lab-light); }
+.editorial-headphones { mix-blend-mode: multiply; }
+.editorial-instructor img { filter: grayscale(1); }
+.section.section--lime:not(#students) { background: var(--lab-white); }
+.section .kicker, .editorial-zone .kicker { font-family: "Manrope", sans-serif; font-weight: 700; }
+.decision-card:first-child, .decision-card:last-child,
+.trust-item, .trust-bullet, .pill, .price-result,
+.student-audio, .chip { background: var(--lab-white); box-shadow: none; border-color: var(--line); }
+.decision-badge, .pill-icon, .status-dot--on, .status-dot--off {
+  background: var(--lab-light);
+  color: var(--lab-black);
+}
+.price-card--featured { background: var(--lab-light); border-color: #11111150; }
+.price-item { background: var(--lab-white); box-shadow: none; border-color: var(--line); border-radius: 4px; }
+.price-result { border: 1px solid var(--line); border-radius: 4px; }
+.price-item span:last-child, .student-quote { color: var(--lab-black); }
+.price-item--off span:last-child { color: #5c5c58; }
+.price-name { font-family: "Suisse Intl", "Manrope", sans-serif; font-weight: 400; }
+.program-title { font-family: "Suisse Intl", "Manrope", sans-serif; font-weight: 400; text-transform: none; }
+.program-item.is-open .program-icon { background: var(--lab-white); }
+.program-toggle:hover, .program-item.is-open { background: #ffffff09; }
+.footer { background: linear-gradient(110deg, #17254f, #111524); }
+::selection { background: var(--lab-cobalt); color: white; }
+
+  </style>
 </head>
 <body>
   <main class="page-shell">
